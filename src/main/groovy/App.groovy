@@ -1,5 +1,6 @@
 package org.meadowhawk.identicon.service
 
+import groovy.transform.CompileStatic
 import org.meadowhawk.identicon.IdenticonGenerator
 import org.meadowhawk.identicon.service.pattern.TrichromeDerez
 import org.meadowhawk.identicon.util.Helper
@@ -12,12 +13,16 @@ import java.security.KeyPair
 
 import static spark.Spark.*
 
+@CompileStatic
 class App {
     static final String JSON_TYPE = "application/json"
     static String readmeMd = null
 
     static void main(String[] args) {
         println "Starting server...."
+        ProcessBuilder process = new ProcessBuilder()
+        int portNum = (process.environment().get("PORT") != null)? Integer.parseInt(process.environment().get("PORT")): 4567
+        port(portNum)
 
         get '/', {req, res ->
             res.status(200)
@@ -32,16 +37,13 @@ class App {
     }
 
     static String getReadme(){
-        File rmd = new File("readme.md")
-        if(readmeMd == null){
-            rmd.withReader { reader ->
-                readmeMd = reader.text
-            }}
+        if(readmeMd == null) {
+            readmeMd = new FileService().getReadme()
+        }
         Parser parser = Parser.builder().build();
         Node document = parser.parse(readmeMd);
         HtmlRenderer renderer = HtmlRenderer.builder().build();
         renderer.render(document)
-
     }
 
     static Object getIcon(){

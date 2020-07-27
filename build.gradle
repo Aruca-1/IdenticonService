@@ -1,6 +1,7 @@
 plugins {
     id 'groovy'
     id 'application'
+    id "com.github.johnrengelman.shadow" version "5.2.0"
 }
 
 group 'org.meadowhawk'
@@ -37,12 +38,20 @@ test {
     }
 }
 
-task fatjar(type: Jar){
-    manifest{
-        attributes 'Main-Class' : 'org.meadowhawk.identicon.service.App', 'Class-Path':'lib/groovy-all-2.5.8.jar'
-    }
-    from{
-        configurations.runtime.collect{it.isDirectory() ? it : zipTree(it)}
-    }
-    with jar
+shadowJar {
+    from "readme.md"
+    mergeServiceFiles()
 }
+
+task deployableShadow(type: Copy) {
+    group "shadow"
+    dependsOn 'build'
+    from('build/libs') {
+        include "**/IdenticonService-${version}-all.jar"
+    }
+    into 'build/libs'
+    rename { String fileName ->
+        fileName.replace("IdenticonService-${version}-all.jar", "IdenticonService.jar")
+    }
+}
+

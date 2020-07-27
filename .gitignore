@@ -6,7 +6,7 @@ build
 
 #Ignore Idea
 .DS_Store
-.idea
+.idea/
 **/*.iml
 /out
 
