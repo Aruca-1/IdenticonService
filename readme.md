@@ -12,7 +12,7 @@ Use mine: Try not to swap it with requests but, feel free to use it.
 ### URL
 Create a link to /icon  using markdown like below or html and your good to go!
 
-``` ![Darez Image for the browser](icon) ```
+``` ![Derez Image for the browser](icon) ```
 
 ### Deploy To Heroku
 Assuming you have the Heroku CLI installed. Pushing out te fat jar is pretty easy.
