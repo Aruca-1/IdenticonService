@@ -2,6 +2,9 @@ package org.meadowhawk.identicon.service
 
 import groovy.transform.CompileStatic
 import org.meadowhawk.identicon.IdenticonGenerator
+import org.meadowhawk.identicon.pattern.Monochrome
+import org.meadowhawk.identicon.pattern.Patchwork
+import org.meadowhawk.identicon.pattern.Trichrome
 import org.meadowhawk.identicon.service.pattern.TrichromeDerez
 import org.meadowhawk.identicon.util.Helper
 import org.meadowhawk.identicon.util.IconSize
@@ -34,6 +37,12 @@ class App {
             res.status(200)
             getIcon()
         }
+
+        get '/simple-icon', { req, resp ->
+            resp.type("image/svg+xml")
+            resp.status(200)
+            getStaticIcon()
+        }
     }
 
     static String getReadme(){
@@ -44,6 +53,13 @@ class App {
         Node document = parser.parse(readmeMd);
         HtmlRenderer renderer = HtmlRenderer.builder().build();
         renderer.render(document)
+    }
+
+    static Object getStaticIcon(){
+        KeyPair keys = Helper.getKeys()
+        byte[] bytes = keys.getPublic().encoded
+
+        IdenticonGenerator.generate(bytes, new Trichrome(), IconSize.SMALL).toString()
     }
 
     static Object getIcon(){

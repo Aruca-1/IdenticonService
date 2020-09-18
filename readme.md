@@ -14,8 +14,9 @@ Create a link to /icon  using markdown like below or html and your good to go!
 
 ``` ![Darez Image for the browser](icon) ```
 
+
 ### Deploy To Heroku
-Assuming you have the Heroku CLI installed. Pushing out te fat jar is pretty easy.
+Assuming you have the Heroku CLI installed. Pushing out the fat jar is pretty easy.
 
 build
 ``` ./gradlew deployableShadow ```
