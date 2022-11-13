@@ -17,21 +17,17 @@ Create a link to /icon  using markdown like below or html and your good to go!
 ``` ![Derez Image for the browser](icon) ```
 
 
-### Deploy To Heroku
-Assuming you have the Heroku CLI installed. Pushing out the fat jar is pretty easy.
+### Deploy To Railway App
+It's even easier then Heroku! 
 
-build
-``` ./gradlew deployableShadow ```
-
-* Setup Java
-``` heroku plugins:install java ```
-
-* Create a new space
-``` heroku create --no-remote ```
-
-* Deploy to Heroku
- ``` heroku deploy:jar build/libs/IdenticonService.jar --app <APP-Name-returned-from-create-above> ```
-
+1. Just fork this repo
+2. Create an acocunt on railway.app
+3. Add yur GitHub account and then configure the Identicon Repo to be used.
+4. Create a new Project and point it to the GitHub Repo
+5. Deploy.
+6. Once done in the Railway.app settings>>Environment Add or geenrate a domain.
+7. hit your URL at https://<your-new-domain>/icon
+8. Generate!
 
 ##License
 Code licensed under MIT Licenses.
