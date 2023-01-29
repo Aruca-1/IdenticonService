@@ -22,7 +22,7 @@ It's even easier then Heroku!
 
 1. Just fork this repo
 2. Create an acocunt on railway.app
-3. Add yur GitHub account and then configure the Identicon Repo to be used.
+3. Add your GitHub account and then configure the Identicon Repo to be used.
 4. Create a new Project and point it to the GitHub Repo
 5. Deploy.
 6. Once done in the Railway.app settings>>Environment Add or geenrate a domain.
